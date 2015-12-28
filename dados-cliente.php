@@ -1,7 +1,7 @@
 <?php
 require_once ("classes/Cliente.php");
 
-if(isset($_GET[id])){
+if(isset($_GET['id'])){
     $idcliente = $_GET['id'];
 
     $arrayClientes = Cliente::cria10Clientes();
