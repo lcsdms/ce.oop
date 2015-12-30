@@ -1,7 +1,18 @@
 <h2>Bem vindo a Página Inicial da gestão de clientes!</h2>
 
-<?php require_once("classes/Cliente.php");
+<?php
 
+require_once("classes/Cliente.php");
+require_once("classes/PessoaFisica.php");
+require_once("classes/PessoaJuridica.php");
+
+function verificaTipoCliente($cliente){
+    if(is_a($cliente,"PessoaFisica")){
+        return "PF";
+    }else{
+        return "PJ";
+    }
+}
 
 $array = Cliente::cria10Clientes();
 
@@ -16,7 +27,8 @@ if (isset($_GET['order'])) {
 function listaClientes($arrayClientes)
 {
     foreach ($arrayClientes as $key => $cliente) {
-        echo "Cliente {$key} - <a href='dados-cliente?id={$key}'>{$cliente->getNome()}</a><br>";
+        $tipo = verificaTipoCliente($cliente);
+        echo "Cliente {$key} - <a href='dados-cliente?id={$key}'>{$cliente->getNome()}</a> - Tipo:{$tipo}<br>";
     }
 }
 
