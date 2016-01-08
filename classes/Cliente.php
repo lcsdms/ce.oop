@@ -4,7 +4,7 @@ require "../interfaces/GrauImportanciaCliente.php";
 
 class Cliente implements GrauImportanciaCliente
 {
-
+    //TODO verificar repo instrutor para tirar duvidas
     private $nome;
     private $telefone;
     private $endereco;
