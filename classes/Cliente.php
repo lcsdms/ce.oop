@@ -1,11 +1,14 @@
 <?php
 
-class Cliente
+require "../interfaces/GrauImportanciaCliente.php";
+
+class Cliente implements GrauImportanciaCliente
 {
 
     private $nome;
     private $telefone;
     private $endereco;
+    private $grauimportancia;
 
     public function __construct($nome,$telefone,$endereco)
     {
@@ -36,6 +39,13 @@ class Cliente
 
         return $arrayClientes;
     }
+
+    public function classificaCliente($nivelGrau){
+        if($nivelGrau >= 0 || $nivelGrau <= 5){
+           $this->setGrauimportancia($nivelGrau);
+        }
+    }
+
 
     /**
      * @return string
@@ -84,6 +94,23 @@ class Cliente
     {
         $this->endereco = $endereco;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGrauimportancia()
+    {
+        return $this->grauimportancia;
+    }
+
+    /**
+     * @param mixed $grauimportancia
+     */
+    public function setGrauimportancia($grauimportancia)
+    {
+        $this->grauimportancia = $grauimportancia;
+    }
+
 
 
 
