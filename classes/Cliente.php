@@ -1,13 +1,14 @@
 <?php
 
-require "../interfaces/GrauImportanciaCliente.php";
+require "./interfaces/GrauImportanciaCliente.php";
+require "./interfaces/EnderecoCobranca.php";
 
-class Cliente implements GrauImportanciaCliente
+class Cliente implements GrauImportanciaCliente,EnderecoCobranca
 {
-    //TODO verificar repo instrutor para tirar duvidas
     private $nome;
     private $telefone;
     private $endereco;
+    private $enderecoCobranca;
     private $grauimportancia;
 
     public function __construct($nome,$telefone,$endereco)
@@ -23,17 +24,16 @@ class Cliente implements GrauImportanciaCliente
      */
     public static function cria10Clientes(){
 
-        //TODO Verificar a criacao dos clients com cpf e cnpj
-        $cliente1 = new PessoaFisica("Andre","1234-5678","Rua 1 do Brasil","456.654.652.31");
-        $cliente2 = new PessoaFisica("Paulo","1234-5678","Rua 2 do Brasil","456.654.652.31");
-        $cliente3 = new PessoaFisica("Marina","1234-5678","Rua 3 do Brasil","456.654.652.31");
-        $cliente4 = new PessoaFisica("Lucas","1234-5678","Rua 4 do Brasil","456.654.652.31");
-        $cliente5 = new PessoaFisica("Debora","1234-5678","Rua 5 do Brasil","456.654.652.31");
-        $cliente6 = new PessoaJuridica("Scofield","1234-5678","Rua 6 do Brasil","456.654.652.31");
-        $cliente7 = new PessoaJuridica("Mark","1234-5678","Rua 7 do Brasil","456.654.652.31");
-        $cliente8 = new PessoaJuridica("Chloe Price","1234-5678","Rua 8 do Brasil","456.654.652.31");
-        $cliente9 = new PessoaJuridica("Jefferson","1234-5678","Rua 9 do Brasil","456.654.652.31");
-        $cliente10 = new PessoaJuridica("Maxine Caulfield","1234-5678","Rua 10 do Brasil","456.654.652.31");
+        $cliente1 = new PessoaFisica("Andre","1234-5678","Rua 1 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente2 = new PessoaFisica("Paulo","1234-5678","Rua 2 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente3 = new PessoaFisica("Marina","1234-5678","Rua 3 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente4 = new PessoaFisica("Lucas","1234-5678","Rua 4 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente5 = new PessoaFisica("Debora","1234-5678","Rua 5 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente6 = new PessoaJuridica("Scofield","1234-5678","Rua 6 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente7 = new PessoaJuridica("Mark","1234-5678","Rua 7 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente8 = new PessoaJuridica("Chloe Price","1234-5678","Rua 8 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente9 = new PessoaJuridica("Jefferson","1234-5678","Rua 9 do Brasil","456.654.652.31","123.456.789-7");
+        $cliente10 = new PessoaJuridica("Maxine Caulfield","1234-5678","Rua 10 do Brasil","456.654.652.31","123.456.789-7");
 
         $arrayClientes = [$cliente1,$cliente2,$cliente3,$cliente4,$cliente5,$cliente6,$cliente7,$cliente8,$cliente9,$cliente10];
 
@@ -112,6 +112,13 @@ class Cliente implements GrauImportanciaCliente
     }
 
 
+    public function setEnderecoCobranca($endereco)
+    {
+        $this->enderecoCobranca = $endereco;
+    }
 
-
+    public function getEnderecoCobranca()
+    {
+        return $this->enderecoCobranca;
+    }
 }
