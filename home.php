@@ -2,19 +2,20 @@
 
 <?php
 
-require_once("classes/Cliente.php");
-require_once("classes/PessoaFisica.php");
-require_once("classes/PessoaJuridica.php");
+use SON\Cliente\ClienteAbstract;
+use SON\Cliente\Types\PessoaFisicaType;
+use SON\Cliente\Types\PessoaJuridicaType;
+use SON\Cliente\Utils\ClienteUtils;
 
 function verificaTipoCliente($cliente){
-    if(is_a($cliente,"PessoaFisica")){
+    if(is_a($cliente,'\SON\Cliente\Types\PessoaFisicaType')){
         return "PF";
     }else{
         return "PJ";
     }
 }
 
-$array = Cliente::cria10Clientes();
+$array = ClienteUtils::cria10Clientes();
 
 if (isset($_GET['order'])) {
     if ($_GET['order'] == "asc") {

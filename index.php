@@ -1,5 +1,6 @@
 <?php
 require_once("rotas.php");
+require_once ("autoload.php");
 $path = verificaRotas(); ?>
 
 <!DOCTYPE html>

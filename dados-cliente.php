@@ -1,12 +1,14 @@
 <?php
-require_once ("classes/Cliente.php");
-require_once("classes/PessoaFisica.php");
-require_once("classes/PessoaJuridica.php");
+
+use SON\Cliente\ClienteAbstract;
+use SON\Cliente\Types\PessoaFisicaType;
+use SON\Cliente\Types\PessoaJuridicaType;
+use SON\Cliente\Utils\ClienteUtils;
 
 if(isset($_GET['id'])){
     $idcliente = $_GET['id'];
 
-    $arrayClientes = Cliente::cria10Clientes();
+    $arrayClientes = ClienteUtils::cria10Clientes();
 
     if(array_key_exists($idcliente,$arrayClientes)){
         $cliente = $arrayClientes[$idcliente];
@@ -16,7 +18,7 @@ if(isset($_GET['id'])){
         echo "<li>Telefone: {$cliente->getTelefone()}</li>";
         echo "<li>Endereço: {$cliente->getEndereco()}</li>";
         //TODO fazer verificação de get CPF ou CNPJ de acordo com o tipo de cliente
-        if(is_a($cliente,'PessoaFisica')){
+        if(is_a($cliente,'\SON\Cliente\Types\PessoaFisicaType')){
             echo "<li>CPF: {$cliente->getCpf()}</li>";
         }else{
             echo "<li>CNPJ: {$cliente->getCnpj()}</li>";
