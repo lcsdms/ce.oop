@@ -1,6 +1,9 @@
 <?php
+namespace SON\Cliente\Types;
 
-class PessoaJuridica extends Cliente
+use SON\Cliente\ClienteAbstract;
+
+class PessoaJuridicaType extends ClienteAbstract
 {
     private $cnpj;
 

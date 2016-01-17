@@ -1,6 +1,9 @@
 <?php
+namespace SON\Cliente\Types;
 
-class PessoaFisica extends Cliente
+use SON\Cliente\ClienteAbstract;
+
+class PessoaFisicaType extends ClienteAbstract
 {
     private $cpf;
 
