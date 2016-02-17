@@ -17,7 +17,6 @@ if(isset($_GET['id'])){
         echo "<li>Nome: {$cliente->getNome()}</li>";
         echo "<li>Telefone: {$cliente->getTelefone()}</li>";
         echo "<li>Endereço: {$cliente->getEndereco()}</li>";
-        //TODO fazer verificação de get CPF ou CNPJ de acordo com o tipo de cliente
         if(is_a($cliente,'\SON\Cliente\Types\PessoaFisicaType')){
             echo "<li>CPF: {$cliente->getCpf()}</li>";
         }else{
