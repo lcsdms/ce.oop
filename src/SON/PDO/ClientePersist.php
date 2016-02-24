@@ -6,6 +6,7 @@ namespace SON\PDO;
 
 use SON\Cliente\ClienteAbstract;
 use SON\Cliente\Types\PessoaFisicaType;
+use SON\Cliente\Types\PessoaJuridicaType;
 
 class ClientePersist
 {
@@ -15,6 +16,23 @@ class ClientePersist
     public function __construct(\PDO $pdo)
     {
         $this->pdo = $pdo;
+    }
+
+    public function buscaTodosClientes(){
+        $query = "SELECT * FROM CLIENTES";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $arrayClientesPdo = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        if(count($arrayClientesPdo) > 0){
+            foreach($arrayClientesPdo as $cliente){
+                if($cliente["tipo_cliente"] == "PF"){
+                    $clientes[] = new PessoaFisicaType($cliente["nome"],$cliente["telefone"],$cliente["endereco"],$cliente["documento"]);
+                }else{
+                    $clientes[] = new PessoaJuridicaType($cliente["nome"],$cliente["telefone"],$cliente["endereco"],$cliente["documento"]);
+                }
+            }
+        }
+        return $clientes;
     }
 
     public function persist(ClienteAbstract $cliente){

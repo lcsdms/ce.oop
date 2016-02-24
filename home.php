@@ -5,17 +5,19 @@
 use SON\Cliente\ClienteAbstract;
 use SON\Cliente\Types\PessoaFisicaType;
 use SON\Cliente\Types\PessoaJuridicaType;
-use SON\Cliente\Utils\ClienteUtils;
 
 function verificaTipoCliente($cliente){
     if(is_a($cliente,'\SON\Cliente\Types\PessoaFisicaType')){
         return "PF";
-    }else{
+    }
+    if(is_a($cliente,'\SON\Cliente\Types\PessoaJuridicaType')){
         return "PJ";
     }
 }
 
-$array = ClienteUtils::cria10Clientes();
+$clienteps = new \SON\PDO\ClientePersist(\SON\PDO\PdoFactory::criaPDO());
+$array = $clienteps->buscaTodosClientes();
+
 
 if (isset($_GET['order'])) {
     if ($_GET['order'] == "asc") {
@@ -41,5 +43,10 @@ function listaClientes($arrayClientes)
     <a href="home?order=asc">Ordem Crescente</a> <a href="home?order=desc">Ordem Decrescente</a>
 </div>
 <div class="lista_clientes">
-    <?php listaClientes($array); ?>
+
+    <?php
+
+    listaClientes($array);
+
+    ?>
 </div>
