@@ -26,13 +26,28 @@ class ClientePersist
         if(count($arrayClientesPdo) > 0){
             foreach($arrayClientesPdo as $cliente){
                 if($cliente["tipo_cliente"] == "PF"){
-                    $clientes[] = new PessoaFisicaType($cliente["nome"],$cliente["telefone"],$cliente["endereco"],$cliente["documento"]);
+                    $clientes[] = new PessoaFisicaType($cliente["nome"],$cliente["telefone"],$cliente["endereco"],$cliente["documento"],$cliente["id"]);
                 }else{
-                    $clientes[] = new PessoaJuridicaType($cliente["nome"],$cliente["telefone"],$cliente["endereco"],$cliente["documento"]);
+                    $clientes[] = new PessoaJuridicaType($cliente["nome"],$cliente["telefone"],$cliente["endereco"],$cliente["documento"],$cliente["id"]);
                 }
             }
         }
         return $clientes;
+    }
+
+    public function buscaClientePorId($idCliente){
+        $query = "SELECT * FROM CLIENTES WHERE ID = :idCliente";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(":idCliente",$idCliente);
+        $stmt->execute();
+        $clientePDO = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if(count($clientePDO > 0)){
+            if($clientePDO["tipo_cliente"] == "PF") {
+                return new PessoaFisicaType($clientePDO["nome"], $clientePDO["telefone"], $clientePDO["endereco"], $clientePDO["documento"]);
+            }else{
+                return new PessoaJuridicaType($clientePDO["nome"], $clientePDO["telefone"], $clientePDO["endereco"], $clientePDO["documento"]);
+            }
+        }
     }
 
     public function persist(ClienteAbstract $cliente){

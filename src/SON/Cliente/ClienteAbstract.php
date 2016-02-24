@@ -7,17 +7,19 @@ use SON\Interfaces\EnderecoCobrancaInterface;
 
 abstract class ClienteAbstract implements GrauImportanciaClienteInterface,EnderecoCobrancaInterface
 {
+    private $id;
     private $nome;
     private $telefone;
     private $endereco;
     private $enderecoCobranca;
     private $grauimportancia;
 
-    public function __construct($nome,$telefone,$endereco)
+    public function __construct($nome,$telefone,$endereco,$id = null)
     {
         $this->nome = $nome;
         $this->telefone = $telefone;
         $this->endereco = $endereco;
+        $this->id = $id;
     }
 
     public function classificaCliente($nivelGrau){
@@ -26,7 +28,15 @@ abstract class ClienteAbstract implements GrauImportanciaClienteInterface,Endere
         }
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     /**
      * @return string
      */

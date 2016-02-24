@@ -31,7 +31,7 @@ function listaClientes($arrayClientes)
 {
     foreach ($arrayClientes as $key => $cliente) {
         $tipo = verificaTipoCliente($cliente);
-        echo "Cliente {$key} - <a href='dados-cliente?id={$key}'>{$cliente->getNome()}</a> - Tipo:{$tipo}<br>";
+        echo "Cliente {$cliente->getId()} - <a href='dados-cliente?id={$cliente->getId()}'>{$cliente->getNome()}</a> - Tipo:{$tipo}<br>";
     }
 }
 

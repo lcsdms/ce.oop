@@ -7,10 +7,11 @@ class PessoaFisicaType extends ClienteAbstract
 {
     private $cpf;
 
-    public function __construct($nome, $telefone, $endereco,$cpf)
+    public function __construct($nome, $telefone, $endereco,$cpf, $id = null)
     {
-        parent::__construct($nome, $telefone, $endereco);
+        parent::__construct($nome, $telefone, $endereco,$id);
         $this->cpf = $cpf;
+
     }
 
     public function getCpf()

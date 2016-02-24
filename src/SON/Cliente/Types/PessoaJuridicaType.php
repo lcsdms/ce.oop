@@ -7,9 +7,9 @@ class PessoaJuridicaType extends ClienteAbstract
 {
     private $cnpj;
 
-    public function __construct($nome, $telefone, $endereco,$cnpj)
+    public function __construct($nome, $telefone, $endereco,$cnpj,$id = null)
     {
-        parent::__construct($nome, $telefone, $endereco);
+        parent::__construct($nome, $telefone, $endereco,$id);
         $this->cnpj=$cnpj;
     }
 
